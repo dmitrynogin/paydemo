@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 
 namespace Payments
 {
-    public interface IMainPaymentProvider : IPaymentProvider
+    public interface IMainPaymentAdapter : IPaymentAdapter
     {
     }
 
-    public interface IPaymentProvider : IPaymentService
+    public interface IPaymentAdapter : IPaymentService
     {
     }
 

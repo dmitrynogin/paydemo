@@ -13,14 +13,14 @@ namespace Payments
         IServiceProvider Provider { get; }
 
         public async Task<BillingId> RegisterAsync(CreditCard card) =>
-            await Service().RegisterAsync(card);
+            await Adapter().RegisterAsync(card);
 
         public async Task ChargeAsync(BillingId id, decimal amount) =>
-            await Service(id).ChargeAsync(id, amount); 
+            await Adapter(id).ChargeAsync(id, amount); 
 
-        IPaymentProvider Service() => Service(typeof(IMainPaymentProvider));
-        IPaymentProvider Service(BillingId id) => Service(id.Provider);
-        IPaymentProvider Service(Type type) => 
-            (IPaymentProvider)Provider.GetService(type);
+        IPaymentAdapter Adapter() => Adapter(typeof(IMainPaymentAdapter));
+        IPaymentAdapter Adapter(BillingId id) => Adapter(id.Adapter);
+        IPaymentAdapter Adapter(Type type) => 
+            (IPaymentAdapter)Provider.GetService(type);
     }
 }

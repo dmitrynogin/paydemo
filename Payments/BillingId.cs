@@ -21,15 +21,15 @@ namespace Payments
 
         protected BillingId(string value) => Value = value;
         public string Value { get; }
-        public abstract Type Provider { get; }
+        public abstract Type Adapter { get; }
         public override string ToString() => 
-            $"{Provider.AssemblyQualifiedName}/{Value}";
+            $"{Adapter.AssemblyQualifiedName}/{Value}";
     }
 
-    public class BillingId<TProvider> : BillingId 
-        where TProvider : IPaymentProvider
+    public class BillingId<TAdapter> : BillingId 
+        where TAdapter : IPaymentAdapter
     {
         public BillingId(string value) : base(value) { }
-        public override Type Provider => typeof(TProvider);
+        public override Type Adapter => typeof(TAdapter);
     }
 }
