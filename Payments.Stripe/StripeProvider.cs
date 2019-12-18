@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using X.IoC;
 
-namespace Payments.Stripe
+namespace Payments
 {
     public interface IStripeProvider : IMainPaymentProvider
     {

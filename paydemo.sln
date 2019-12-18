@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments", "Payments\Paymen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Stripe", "Payments.Stripe\Payments.Stripe.csproj", "{BDB234CA-6CD6-4BDB-B7CF-39B08F900B40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Tests", "Payments.Tests\Payments.Tests.csproj", "{6C4DF404-647E-49C2-9E15-0DB7EB2EA476}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BDB234CA-6CD6-4BDB-B7CF-39B08F900B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDB234CA-6CD6-4BDB-B7CF-39B08F900B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDB234CA-6CD6-4BDB-B7CF-39B08F900B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C4DF404-647E-49C2-9E15-0DB7EB2EA476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C4DF404-647E-49C2-9E15-0DB7EB2EA476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C4DF404-647E-49C2-9E15-0DB7EB2EA476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C4DF404-647E-49C2-9E15-0DB7EB2EA476}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
