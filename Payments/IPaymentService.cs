@@ -3,12 +3,13 @@ using System.Threading.Tasks;
 
 namespace Payments
 {
-    public interface IMainPaymentAdapter : IPaymentAdapter
+    public interface IMainPaymentProvider : IPaymentProvider
     {
     }
 
-    public interface IPaymentAdapter : IPaymentService
+    public interface IPaymentProvider : IPaymentService
     {
+        string Name { get; }
     }
 
     public interface IPaymentGateway : IPaymentService

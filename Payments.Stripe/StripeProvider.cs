@@ -4,17 +4,19 @@ using X.IoC;
 
 namespace Payments
 {
-    public interface IStripeAdapter : IMainPaymentAdapter
+    public interface IStripeProvider : IMainPaymentProvider
     {
     }
 
     [Service]
-    public class StripeAdapter : IStripeAdapter
+    public class StripeProvider : IStripeProvider
     {
         StripeClient Client { get; } = new StripeClient();
 
+        public string Name => "Stripe";
+
         public async Task<BillingId> RegisterAsync(CreditCard card) =>
-            new BillingId<IStripeAdapter>(await Client.RegisterAsync(card));
+            new BillingId(Name, await Client.RegisterAsync(card));
 
         public async Task ChargeAsync(BillingId id, decimal amount) =>
             await Client.Charge(id.Value, amount);
