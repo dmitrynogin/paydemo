@@ -3,33 +3,27 @@ using Payments.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
+using static System.String;
 
 namespace Payments
 {
     [TypeConverter(typeof(BillingIdTypeConverter))]
     [JsonConverter(typeof(BillingIdJsonConverter))]
-    public abstract class BillingId
+    public class BillingId
     {
-        public static BillingId Parse(string text)
-        {
-            var parts = text.Split('/');
-            return (BillingId)Activator.CreateInstance(
-                typeof(BillingId<>).MakeGenericType(Type.GetType(parts[0])),
-                parts[1]);
-        }
+        public static BillingId Parse(string text) =>
+            IsNullOrWhiteSpace(text) ? null :
+            text.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries) is string[] p && p.Length == 2
+                ? new BillingId(p[0], p[1]) 
+                : throw new FormatException();
 
-        protected BillingId(string value) => Value = value;
+        public BillingId(string provider, string value) => 
+            (Provider, Value) = (provider, value);
+
+        public string Provider { get; }
         public string Value { get; }
-        public abstract Type Adapter { get; }
+        
         public override string ToString() => 
-            $"{Adapter.AssemblyQualifiedName}/{Value}";
-    }
-
-    public class BillingId<TAdapter> : BillingId 
-        where TAdapter : IPaymentAdapter
-    {
-        public BillingId(string value) : base(value) { }
-        public override Type Adapter => typeof(TAdapter);
+            $"{Provider}:{Value}";
     }
 }
